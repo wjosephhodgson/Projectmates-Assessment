@@ -1,3 +1,6 @@
+//////////////////////////////////////////////////////////////
+// DEPS
+//////////////////////////////////////////////////////////////
 import React, { useState, useMemo } from 'react';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
@@ -45,6 +48,12 @@ import RestaurantIcon from '@mui/icons-material/Restaurant';
 
 // Import products data
 import productsData from './Products.json';
+
+
+
+//////////////////////////////////////////////////////////////
+// Material UI styles
+//////////////////////////////////////////////////////////////
 
 // Create dark theme similar to MUI Dashboard template
 const applicationTheme = createTheme({
@@ -95,6 +104,11 @@ const applicationTheme = createTheme({
     },
   },
 });
+
+
+//////////////////////////////////////////////////////////////
+// Functions
+//////////////////////////////////////////////////////////////
 
 // Utility function to remove duplicate products with same productId
 const removeDuplicateProducts = (productList) => {
@@ -232,6 +246,9 @@ function ProductFormModal({ isOpen, onDismiss, productData, isEditMode }) {
     setValidationErrors({});
   };
 
+//////////////////////////////////////////////////////////////
+// Edit/delete modal
+//////////////////////////////////////////////////////////////
   return (
     <Dialog open={isOpen} onClose={onDismiss} maxWidth="sm" fullWidth>
       <DialogTitle>{isEditMode ? 'Edit Product' : 'Add New Product'}</DialogTitle>
@@ -305,6 +322,10 @@ function ProductFormModal({ isOpen, onDismiss, productData, isEditMode }) {
   );
 }
 
+//////////////////////////////////////////////////////////////
+// Alt mobile view with cards
+//////////////////////////////////////////////////////////////
+
 // Mobile Card View Component
 function InventoryCard({ itemData, onModify, onRemove }) {
   return (
@@ -334,7 +355,10 @@ function InventoryCard({ itemData, onModify, onRemove }) {
   );
 }
 
-// Main Product Table Component
+
+//////////////////////////////////////////////////////////////
+// Product table rendering and manipulation
+//////////////////////////////////////////////////////////////
 function InventoryDataGrid() {
   const dispatcher = useDispatch();
   const inventoryItems = useSelector((state) => state.items);
@@ -437,6 +461,9 @@ function InventoryDataGrid() {
     setCurrentPage(0); // Reset to first page when filtering
   };
 
+//////////////////////////////////////////////////////////////
+// Table html8
+//////////////////////////////////////////////////////////////
   return (
     <Container maxWidth="xl" sx={{ py: 4 }}>
       {/* Header */}
@@ -656,7 +683,6 @@ function InventoryDataGrid() {
   );
 }
 
-// App Component
 export default function App() {
   return (
     <ThemeProvider theme={applicationTheme}>
